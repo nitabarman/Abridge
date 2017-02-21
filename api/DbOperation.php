@@ -212,5 +212,23 @@ class DbOperation {
     }
 	
 	
+	 //Method to get Employee details
+    public function getEmployee($EmailAddress) {
+        $stmt = $this->con->prepare("SELECT t_usertable.Id,  t_usertable.EmailAddress, t_usertable.FirstName,t_usertable.LastName  
+		FROM t_usertable WHERE EmailAddress=?");
+        $stmt->bind_param("s", $EmailAddress);
+        $stmt->execute();
+        $EmailAddress = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $EmailAddress;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
